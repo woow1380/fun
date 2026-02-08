@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      background-color: #ff6b81; /* watermelon pink */
+      overflow: hidden;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px #ffaac0;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 22px;
+      margin: 10px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background-color: #ff85c1;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ffb6d4;
+    }
+
+    /* Floating bouquets animation */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .bouquet {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.8;
+      animation: float linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>Are you free on 14 Feb?</h1>
+
+  <div>
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+  </div>
+
+  <script>
+    // Floating bouquets in background
+    const body = document.body;
+    const totalBouquets = 30;
+    for(let i=0; i<totalBouquets; i++){
+      const span = document.createElement('span');
+      span.className = 'bouquet';
+      span.innerHTML = '💐'; // bouquet emoji
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
+      span.style.fontSize = (20 + Math.random() * 20) + 'px';
+      span.style.animationDuration = (5 + Math.random() * 10) + 's';
+      body.appendChild(span);
+    }
+
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    let noAttempts = 0;
+
+    // Yes button goes to next page
+    yesBtn.addEventListener('click', () => {
+      window.location.href = "question3.html";
+    });
+
+    // No button runs away
+    noBtn.addEventListener('mouseenter', () => {
+      if(noAttempts < 2){
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        noAttempts++;
+      }
+    });
+
+    // If clicked after 2 tries
+    noBtn.addEventListener('click', () => {
+      if(noAttempts >= 2){
+        alert("Wrong answer! ❌");
+        noBtn.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+   <!DOCTYPE html>
+<html>
+<head>
+  <title>Question 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      background-color: #ff6b81; /* watermelon pink */
+      overflow: hidden;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 42px;
+      text-shadow: 2px 2px #ffaac0;
+    }
+
+    input {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 150px;
+      padding: 6px 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    /* Floating emoji animation */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.8;
+      animation: float linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>YAYYEEEYYEEE! 🤭🤗</h1>
+  <input type="text" id="answer" placeholder="Type here...">
+
+  <script>
+    // Floating emojis in background
+    const body = document.body;
+    const totalEmojis = 30;
+    const emojiArray = ['🤭','🤗','🎀']; // 🤭, 🤗, and bow for Pookie
+    
+    for(let i=0; i<totalEmojis; i++){
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.innerHTML = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
+      span.style.fontSize = (20 + Math.random() * 20) + 'px';
+      span.style.animationDuration = (5 + Math.random() * 10) + 's';
+      body.appendChild(span);
+    }
+
+    // Press Enter to go to question4.html
+    const answerInput = document.getElementById('answer');
+    answerInput.addEventListener('keypress', function(event) {
+      if(event.key === 'Enter') {
+        window.location.href = "question4.html";
+      }
+    });
+  </script>
+</body>
+</html>

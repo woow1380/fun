@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question 6 - Yay!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      background-color: #ff99c8; /* soft warm pink */
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      text-shadow: 2px 2px #ff4d94;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-top: 20px;
+      text-shadow: 2px 2px #ff4d94;
+    }
+
+    /* Floating emojis 🎀 and 🌸 */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.9;
+      animation: float linear infinite;
+    }
+
+    /* Confetti pieces */
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: white;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: confettiFall linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.5; }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>YAYYEEEYYEEE</h1>
+  <h2>Date wen?</h2>
+
+  <script>
+    const body = document.body;
+
+    // Floating bows and flowers 🎀🌸
+    const totalEmojis = 25;
+    const emojiArray = ['🎀','🌸'];
+    for(let i=0; i<totalEmojis; i++){
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.innerHTML = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
+      span.style.fontSize = (20 + Math.random() * 25) + 'px';
+      span.style.animationDuration = (5 + Math.random() * 8) + 's';
+      body.appendChild(span);
+    }
+
+    // Confetti falling effect
+    const totalConfetti = 50;
+    const colors = ['#ff4d94','#ff85c1','#ffb6d4','#ffe6f0'];
+    for(let i=0; i<totalConfetti; i++){
+      const conf = document.createElement('div');
+      conf.className = 'confetti';
+      conf.style.left = Math.random() * 100 + 'vw';
+      conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      conf.style.width = (8 + Math.random() * 8) + 'px';
+      conf.style.height = conf.style.width;
+      conf.style.animationDuration = (3 + Math.random() * 4) + 's';
+      conf.style.animationDelay = Math.random() * 5 + 's';
+      body.appendChild(conf);
+    }
+  </script>
+</body>
+</html>

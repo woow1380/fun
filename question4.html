@@ -1,0 +1,108 @@
+
+   <!DOCTYPE html>
+<html>
+<head>
+  <title>Question 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(#ffdde1, #ff6b81); /* soft pink gradient */
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #ff85c1;
+    }
+
+    #dots {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    #arrowBtn {
+      display: none;
+      padding: 14px 28px;
+      font-size: 28px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background-color: #ff85c1;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      transition: transform 0.3s;
+    }
+
+    #arrowBtn:hover {
+      transform: scale(1.1);
+      background-color: #ffb6d4;
+    }
+
+    /* Floating emojis */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.8;
+      animation: float linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>I have something</h1>
+  <div id="dots"></div>
+  <button id="arrowBtn">➡</button>
+
+  <script>
+    // Floating emojis in background
+    const body = document.body;
+    const totalEmojis = 25;
+    const emojiArray = ['🌹','🎀'];
+    for(let i=0; i<totalEmojis; i++){
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.innerHTML = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
+      span.style.fontSize = (20 + Math.random() * 20) + 'px';
+      span.style.animationDuration = (6 + Math.random() * 8) + 's';
+      body.appendChild(span);
+    }
+
+    // Animate dots for suspense
+    const dotsDiv = document.getElementById('dots');
+    let dotCount = 0;
+    const maxDots = 7; // number of dots before arrow shows
+    const interval = setInterval(() => {
+      dotCount++;
+      dotsDiv.textContent += '.';
+      if(dotCount >= maxDots) {
+        clearInterval(interval);
+        document.getElementById('arrowBtn').style.display = 'inline-block';
+      }
+    }, 700); // 0.7s per dot → ~5 sec suspense
+
+    // Arrow button click → next page
+    const arrowBtn = document.getElementById('arrowBtn');
+    arrowBtn.addEventListener('click', () => {
+      window.location.href = "question5.html"; // change this to your next page
+    });
+  </script>
+</body>
+</html>

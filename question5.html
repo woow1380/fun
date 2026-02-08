@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question 5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      background-color: #ff4d94; /* vibrant warm pink */
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #ff85c1;
+    }
+
+    #afterEmoji {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 16px 32px;
+      font-size: 26px;
+      margin: 12px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background-color: #ff85c1;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ffb6d4;
+    }
+
+    /* Floating bows 🎀 */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.9;
+      animation: float linear infinite;
+    }
+
+    /* Fixed corner bows (iPhone-style) */
+    .corner {
+      position: absolute;
+      font-size: 48px;
+      opacity: 0.9;
+    }
+
+    .top-left { top: 10px; left: 10px; }
+    .top-right { top: 10px; right: 10px; }
+    .bottom-left { bottom: 10px; left: 10px; }
+    .bottom-right { bottom: 10px; right: 10px; }
+
+  </style>
+</head>
+<body>
+  <!-- Four corners with iPhone-style 🎀 emoji -->
+  <div class="corner top-left">🎀</div>
+  <div class="corner top-right">🎀</div>
+  <div class="corner bottom-left">🎀</div>
+  <div class="corner bottom-right">🎀</div>
+
+  <!-- Question with 🙈 emoji -->
+  <h1>Are you free on 14 Feb?</h1>
+  <div id="afterEmoji">🙈</div>
+
+  <div>
+    <button class="yesBtn">Yes</button>
+    <button class="yesBtn">Yes</button>
+  </div>
+
+  <script>
+    // Floating bows 🎀 in the background
+    const body = document.body;
+    const totalBows = 25; // floating bows
+    for(let i=0; i<totalBows; i++){
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.innerHTML = '🎀';
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
+      span.style.fontSize = (20 + Math.random() * 20) + 'px';
+      span.style.animationDuration = (5 + Math.random() * 8) + 's';
+      body.appendChild(span);
+    }
+
+    // Clicking any "Yes" button leads to next page
+    const yesButtons = document.querySelectorAll('.yesBtn');
+    yesButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.location.href = "question6.html"; // next page (final reveal)
+      });
+    });
+  </script>
+</body>
+</html>
